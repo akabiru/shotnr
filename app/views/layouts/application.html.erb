@@ -2,13 +2,20 @@
 <html>
 <head>
   <title>Shotnr</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="site-wrapper">
+    <div class="site-wrapper-inner">
+      <div class="cover-container">
+        <%= render 'layouts/navbar' %>
+        <%= yield %>
+        <%= render 'layouts/footer' %>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

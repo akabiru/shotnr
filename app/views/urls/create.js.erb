@@ -1,0 +1,3 @@
+$('input#url_long_url').val('');
+$('button#shortend-url').html("<strong>Copy: </strong><%= "#{root_url}" %>" +
+  "<%= j( @url.short_url ) %>");
