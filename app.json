@@ -2,7 +2,7 @@
   "name": "shotnr",
   "description": "A url shortening web app",
   "scripts": {
-    "postdeploy": "bin/setup",
+    "postdeploy":"bundle exec rake db:migrate",
     "pr-predestroy": "bin/teardown"
   },
   "env": {
