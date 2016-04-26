@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160418095259) do
+ActiveRecord::Schema.define(version: 20160426154259) do
 
   create_table "urls", force: :cascade do |t|
     t.string   "long_url"
@@ -20,5 +20,19 @@ ActiveRecord::Schema.define(version: 20160418095259) do
     t.datetime "updated_at",             null: false
     t.integer  "hits",       default: 0
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "image_url"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
+  add_index "users", ["provider"], name: "index_users_on_provider"
+  add_index "users", ["uid"], name: "index_users_on_uid"
 
 end

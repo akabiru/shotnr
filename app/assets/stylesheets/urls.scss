@@ -54,11 +54,7 @@ body {
     color: #fff;
     background-color: transparent;
     border-bottom: .25rem solid transparent;
-  }
-}
 
-.nav-masthead {
-  .nav-link {
     &:hover, &:focus {
       border-bottom-color: rgba(255,255,255,.25);
     }
@@ -71,6 +67,14 @@ body {
   .active {
     color: #fff;
     border-bottom-color: #fff;
+  }
+
+  .profile-picture {
+    border-radius: 50%;
+  }
+
+  .nav-image-link {
+    padding: 1rem;
   }
 }
 
@@ -101,6 +105,10 @@ body {
     color: #fff;
     background-color: #80DEEA;
   }
+}
+
+.btn-sm {
+  color: #fff;
 }
 
 #url-view {

@@ -3,8 +3,18 @@
     <h3 class="masthead-brand">Shotnr</h3>
     <nav class="nav nav-masthead">
       <a class="nav-link" href="#">Trending</a>
-      <a class="nav-link" href="#">Log In</a>
-      <a class="nav-link" href="#">Sign Up</a>
+      <% if logged_in? %>
+        <%= link_to "#", class: 'nav-image-link' do %>
+          <%= image_tag current_user.image_url, class: 'profile-picture' %>
+        <% end %>
+      <% else %>
+        <%= link_to '/auth/twitter', class: 'nav-link' do %>
+          <span class="btn btn-info-outline btn-sm"><i class="fa fa-twitter"></i> Log In</span>
+        <% end %>
+        <a class="nav-link" href="#">
+          <span class="btn btn-info-outline btn-sm"><i class="fa fa-facebook"></i> Log In</span>
+        </a>
+      <% end %>
     </nav>
   </div>
 </div>
