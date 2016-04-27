@@ -2,8 +2,7 @@
   "name": "shotnr",
   "description": "A url shortening web app",
   "scripts": {
-    "postdeploy": "bin/setup",
-    "pr-predestroy": "bin/teardown"
+    "postdeploy":"bundle exec rake db:migrate"
   },
   "env": {
     "LANG": {
@@ -28,20 +27,7 @@
       "required": true
     }
   },
-  "formation": {
-    "worker": {
-      "quantity": 1
-    },
-    "web": {
-      "quantity": 1
-    }
-  },
   "addons": [
     "heroku-postgresql"
-  ],
-  "buildpacks": [
-    {
-      "url": "heroku/ruby"
-    }
   ]
 }

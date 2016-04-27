@@ -6,6 +6,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'omniauth-twitter'
 
 group :development, :test do
   gem 'byebug'
