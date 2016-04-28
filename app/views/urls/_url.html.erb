@@ -1,4 +1,4 @@
 <%= div_for url do %>
-  <p><%= url.long_url %></p>
   <%= link_to "#{root_url}#{url.short_url}", "#{root_url}#{url.short_url}" %>
+  <p><%= url.long_url %></p>
 <% end %>
