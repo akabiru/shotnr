@@ -112,8 +112,20 @@ body {
 }
 
 #url-view {
-  .btn-info-outline {
-    color: #fff;
+  border: 1px solid #5BC0DE;
+  border-radius: 5px;
+
+  .url {
+    padding: 1rem;
+    text-align: left;
+
+    a {
+      color: #FFB300;
+      text-decoration: none;
+      &:hover, &:focus {
+
+      }
+    }
   }
 }
 /* Footer */
