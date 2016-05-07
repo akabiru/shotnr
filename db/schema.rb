@@ -11,15 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426154259) do
+ActiveRecord::Schema.define(version: 20160429074001) do
 
-  create_table "urls", force: :cascade do |t|
+  create_table "original_urls", force: :cascade do |t|
     t.string   "long_url"
-    t.string   "short_url"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "hits",       default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  create_table "short_urls", force: :cascade do |t|
+    t.string   "vanity_string"
+    t.integer  "original_url_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "short_urls", ["vanity_string"], name: "index_short_urls_on_vanity_string", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "provider"

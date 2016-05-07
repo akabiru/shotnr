@@ -4,6 +4,9 @@
     <nav class="nav nav-masthead">
       <a class="nav-link" href="#">Trending</a>
       <% if logged_in? %>
+        <%= link_to logout_path, class: 'nav-link' do %>
+          <span><i class="fa fa-sign-out" aria-hidden-"true"></i> Logout</span>
+        <% end %>
         <%= link_to "#", class: 'nav-image-link' do %>
           <%= image_tag current_user.image_url, class: 'profile-picture' %>
         <% end %>

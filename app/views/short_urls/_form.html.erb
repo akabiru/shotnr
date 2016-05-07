@@ -1,0 +1,11 @@
+<%= form_for(@short_url, remote: true, html: { class: 'form-inline' }) do |f| %>
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon">
+        <%= "#{root_url}" %>
+      </div>
+      <%= f.text_field :vanity_string, class: 'form-control' %>
+    </div>
+  </div>
+  <%= f.submit class: 'btn btn-primary-outline btn-sm' %>
+<% end %>

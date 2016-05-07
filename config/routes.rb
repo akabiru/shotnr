@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  root 'urls#index'
-  resources :urls
+  root 'original_urls#index'
+  resources :original_urls
+  resources :short_urls
 
   get '/auth/:provider/callback' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-  get '/:short_url' => 'urls#redirect'
+  get '/search/:vanity_string_' => 'short_urls#check_vanity_string', constraints: { format: 'json' }
+  get '/:vanity_string' => 'original_urls#redirect_to_original_url'
 
 end
