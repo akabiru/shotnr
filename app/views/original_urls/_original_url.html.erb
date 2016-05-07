@@ -1,0 +1,4 @@
+<%= div_for original_url do %>
+  <p><%= original_url.long_url %></p>
+  <%= link_to shortened_url(original_url), shortened_url(original_url) %>
+<% end %>

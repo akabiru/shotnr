@@ -115,7 +115,7 @@ body {
   border: 1px solid #5BC0DE;
   border-radius: 5px;
 
-  .url {
+  .original_url {
     padding: 1rem;
     text-align: left;
 
@@ -125,6 +125,9 @@ body {
       &:hover, &:focus {
 
       }
+    }
+    i {
+      color: #fff !important;
     }
   }
 }

@@ -7,6 +7,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'omniauth-twitter'
+gem 'figaro'
 
 group :development, :test do
   gem 'byebug'
