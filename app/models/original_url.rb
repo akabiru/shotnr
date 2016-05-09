@@ -11,5 +11,4 @@ class OriginalUrl < ActiveRecord::Base
       false
     end
   end
-
 end

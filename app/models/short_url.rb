@@ -5,8 +5,8 @@ class ShortUrl < ActiveRecord::Base
   validates_presence_of :original_url_id
   validates :vanity_string, presence: true
 
-  ALPHABETS = "x6QW9Js5T7MHCyVj0uRIkrYaLFlSh4b3fpZANz1o8wqKtX2d"\
-  "OBnvGUcgiEDmeP-_".split(//)
+  ALPHABETS = 'x6QW9Js5T7MHCyVj0uRIkrYaLFlSh4b3fpZANz1o8wqKtX2d'\
+  'OBnvGUcgiEDmeP-_'.split(//)
 
   def generate_short_url
     self.vanity_string = encode_original_url_id
@@ -15,7 +15,7 @@ class ShortUrl < ActiveRecord::Base
 
   def encode_original_url_id
     short_url = ''
-    original_url_id_ = self.original_url_id
+    original_url_id_ = original_url_id
     base = ALPHABETS.size
     while original_url_id_ > 0
       short_url << ALPHABETS[original_url_id_.modulo(base)]
@@ -23,5 +23,4 @@ class ShortUrl < ActiveRecord::Base
     end
     short_url.reverse
   end
-
 end
