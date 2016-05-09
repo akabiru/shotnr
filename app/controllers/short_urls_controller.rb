@@ -5,7 +5,6 @@ class ShortUrlsController < ApplicationController
   end
 
   def update
-
   end
 
   def check_vanity_string
@@ -17,8 +16,7 @@ class ShortUrlsController < ApplicationController
 
   private
 
-    def set_short_url
-      @short_url = ShortUrl.find(params[:id])
-    end
-
+  def set_short_url
+    @short_url = ShortUrl.find(params[:id])
+  end
 end
