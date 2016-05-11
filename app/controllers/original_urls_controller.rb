@@ -17,7 +17,13 @@ class OriginalUrlsController < ApplicationController
 
   def redirect_to_original_url
     original_url = OriginalUrl.find_long_url(params[:vanity_string])
-    redirect_to original_url.long_url if original_url
+    if original_url
+      redirect_to original_url.long_url
+      original_url.increment_clicks
+      unless original_url.short_url.user.nil?
+        original_url.short_url.user.increment_total_clicks
+      end
+    end
   end
 
   def create_without_custom_url

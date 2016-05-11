@@ -1,8 +1,8 @@
 <div class="masthead clearfix">
   <div class="inner">
-    <h3 class="masthead-brand">Shotnr</h3>
+    <h3 class="masthead-brand"><a href="/">Shotnr</a></h3>
     <nav class="nav nav-masthead">
-      <a class="nav-link" href="#">Trending</a>
+      <%= link_to 'Trending', short_urls_path, class: 'nav-link' %>
       <% if logged_in? %>
         <%= link_to logout_path, class: 'nav-link' do %>
           <span><i class="fa fa-sign-out" aria-hidden-"true"></i> Logout</span>
