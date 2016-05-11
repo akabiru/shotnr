@@ -8,10 +8,11 @@ gem 'turbolinks'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'omniauth-twitter'
 gem 'figaro'
+gem 'puma'
+gem 'pg'
 
 group :development, :test do
   gem 'byebug'
-  gem 'sqlite3'
 end
 
 group :development do
@@ -21,7 +22,5 @@ group :development do
 end
 
 group :production do
-  gem 'puma'
-  gem 'pg'
   gem 'rails_12factor'
 end

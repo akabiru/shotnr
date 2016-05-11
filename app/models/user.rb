@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :short_urls
 
   def increment_total_clicks
-    total_clicks += 1
+    self.total_clicks += 1
     save
   end
 

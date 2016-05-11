@@ -1,16 +1,28 @@
 default: &default
-  adapter: sqlite3
+  host: localhost
+  adapter: postgresql
   pool: 5
   timeout: 5000
+  username: akabiru
+  password: foobar123
 
 development:
-  <<: *default
-  database: db/development.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: shotnr_development
+  pool: 5
+
 
 test:
-  <<: *default
-  database: db/test.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: shotnr_test
+  pool: 5
+  host: localhost
+  port: 5432
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: shotnr_production
+  pool: 5
