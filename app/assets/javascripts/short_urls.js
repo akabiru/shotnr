@@ -16,6 +16,11 @@ $(function() {
         validateVanityString('vanity', 'Your custom url is too short.', 'success', 'danger')
       } else {
         validateVanityString('vanity', '', 'danger', 'success')
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+          }
+        })
         $.ajax({
           method: 'GET',
           url: '/search/' + this.value,
