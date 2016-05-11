@@ -1,0 +1,43 @@
+<div class="shotlinks-url-view">
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" role="tab" data-toggle="tab" href="#popular">Most Popular</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" role="tab" data-toggle="tab" href="#recent">Recent Shotlinks</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" role="tab" data-toggle="tab" href="#influential">Influential Users</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" id="popular" class="tab-pane fade in active">
+      <%= render partial: 'shotlinks_list_view', collection: @popular_shotlinks, as: :s %>
+    </div>
+    <div role="tabpanel" id="recent" class="tab-pane fade">
+      <%= render partial: 'shotlinks_list_view', collection: @recent_shotlinks, as: :s %>
+    </div>
+    <div role="tabpanel" id="influential" class="tab-pane fade">
+     <% if @influential_users.nil? %>
+       <div class="text-center">
+          <span><i class="fa fa-meh-o fa-lg" aria-hidden="true"></i></span>
+          <p>No influential users</p>
+          <p>Log in to be come one</p>
+        </div>
+      <% else %>
+        <% @influential_users.each do |user| %>
+          <li class="list-group-item">
+            <%= image_tag user.image_url, class: 'profile-picture' %>
+            <span class="user-name"><%= user.name %></span>
+            <span class="label label-success label-pill">Total clicks: <%= user.total_clicks %></span><br>
+            <span>Top Url: </span>
+            <%= link_to full_short_url(user.trending_shotlink[:original_url]),
+              full_short_url(user.trending_shotlink[:original_url]) %><br>
+            <span><small><%= user.trending_shotlink[:original_url].long_url %></small></span>
+          </li>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
