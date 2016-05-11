@@ -20,9 +20,6 @@ $(function() {
           method: 'GET',
           url: '/search/' + this.value,
           dataType: 'json',
-          beforeSend: function(xhr) {
-            xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
-          },
           success: function(data) {
             if (data.exists) {
               validateVanityString('vanity', 'sorry, that url is already taken', 'success', 'warning')
