@@ -1,28 +1,18 @@
 default: &default
-  host: localhost
   adapter: postgresql
+  encoding: unicode
   pool: 5
-  timeout: 5000
-  username: akabiru
-  password: foobar123
 
 development:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: shotnr_development
-  pool: 5
-
 
 test:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: shotnr_test
-  pool: 5
-  host: localhost
-  port: 5432
 
 production:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: shotnr_production
-  pool: 5
+  username: shotnr
+  password: <%= ENV['SHOTNR_DATABASE_PASSWORD'] %>
