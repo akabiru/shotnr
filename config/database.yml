@@ -3,7 +3,7 @@ default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
-  username: akabiru
+  username: austin
   password: foobar123
 
 development:
