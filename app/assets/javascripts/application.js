@@ -15,3 +15,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require short_urls
+//= require_tree .
