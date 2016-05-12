@@ -19,12 +19,10 @@ class OriginalUrlsController < ApplicationController
           short_url.generate_short_url
         end
         short_url.save
+        format.js
       else
-        format.html do
-          render :index, danger: "Error, the url could not be saved."
-        end
+        format.html { render :index }
       end
-      format.js {}
     end
   end
 
