@@ -13,6 +13,7 @@ gem 'pg'
 
 group :development, :test do
   gem 'byebug'
+  gem 'rubocop', '~> 0.40.0', require: false
 end
 
 group :development do

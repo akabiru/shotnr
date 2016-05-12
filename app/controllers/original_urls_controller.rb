@@ -5,14 +5,27 @@ class OriginalUrlsController < ApplicationController
 
   def create
     @original_url = OriginalUrl.new(long_url: url_params[:long_url])
-    if url_params[:vanity_string].nil?
-      create_without_custom_url
-    elsif logged_in? && url_params[:vanity_string].empty?
-      create_without_custom_url
-    else
-      create_with_custom_url
+    respond_to do |format|
+      if @original_url.save
+        short_url = @original_url.build_short_url
+        if logged_in?
+          short_url.user_id = current_user.id
+          if url_params[:vanity_string].blank?
+            short_url.generate_short_url
+          else
+            short_url.vanity_string = url_params[:vanity_string]
+          end
+        else
+          short_url.generate_short_url
+        end
+        short_url.save
+      else
+        format.html do
+          render :index, danger: "Error, the url could not be saved."
+        end
+      end
+      format.js {}
     end
-    respond_to { |format| format.js }
   end
 
   def redirect_to_original_url
@@ -24,34 +37,6 @@ class OriginalUrlsController < ApplicationController
         original_url.short_url.user.increment_total_clicks
       end
     end
-  end
-
-  def create_without_custom_url
-    if @original_url.save
-      short_url = ShortUrl.new(original_url_id: @original_url.id)
-      short_url.user_id = current_user.id if logged_in?
-      short_url.generate_short_url
-    else
-      handle_create_failure
-    end
-  end
-
-  def create_with_custom_url
-    if @original_url.save
-      short_url = ShortUrl.new(
-        original_url_id: @original_url.id,
-        vanity_string: url_params[:vanity_string]
-      )
-      short_url.user_id = current_user.id if logged_in?
-      handle_create_failure unless short_url.save
-    else
-      handle_create_failure
-    end
-  end
-
-  def handle_create_failure
-    flash[:danger] = 'Error, the url could not be saved.'
-    render :index
   end
 
   private
