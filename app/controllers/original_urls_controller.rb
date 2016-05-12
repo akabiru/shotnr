@@ -12,7 +12,7 @@ class OriginalUrlsController < ApplicationController
     else
       create_with_custom_url
     end
-    respond_to :js
+    respond_to { |format| format.js }
   end
 
   def redirect_to_original_url
