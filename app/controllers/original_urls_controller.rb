@@ -9,24 +9,25 @@ class OriginalUrlsController < ApplicationController
 
   def create
     @original_url  = OriginalUrl.new(long_url: url_params[:long_url])
-    respond_to do |format|
-      if @original_url.save
-        short_url = @original_url.build_short_url
-        if logged_in?
-          short_url.user_id = current_user.id
-          if url_params[:vanity_string].blank?
-            short_url.generate_short_url
-          else
-            short_url.vanity_string = url_params[:vanity_string]
-          end
-        else
+    if @original_url.save
+      short_url = @original_url.build_short_url
+      if logged_in?
+        short_url.user_id = current_user.id
+        if url_params[:vanity_string].blank?
           short_url.generate_short_url
+        else
+          short_url.vanity_string = url_params[:vanity_string]
         end
-        short_url.save
-        format.js {}
       else
-        format.html { render :index }
+        short_url.generate_short_url
       end
+      short_url.save
+      respond_to do |format|
+        format.js {}
+      end
+    else
+      flash[:danger] = 'Error, shotlink could not be saved.'
+      render :index
     end
   end
 
