@@ -14,4 +14,4 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
-//= require short_urls
+//= require main/short_urls
