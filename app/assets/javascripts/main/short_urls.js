@@ -1,4 +1,4 @@
-$(function() {
+$(document).on("page:change", function() {
   var validateVanityString = function( validationType, message , classToRemove, classToAdd) {
     var hasRemoveClass = 'has-' + classToRemove,
         hasAddClass = 'has-' + classToAdd,
