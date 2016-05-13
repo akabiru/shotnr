@@ -23,7 +23,8 @@ class OriginalUrlsController < ApplicationController
           short_url.generate_short_url
         end
         short_url.save
-        format.js
+        format.js {}
+        format.html { redirect_to original_urls_url }
       else
         format.html { render :index }
       end
