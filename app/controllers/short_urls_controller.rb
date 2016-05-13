@@ -3,7 +3,7 @@ class ShortUrlsController < ApplicationController
 
   def index
     @popular_shotlinks =
-      OriginalUrl.where('clicks >= ?', 1).order(clicks: :desc).limit(7)
+      OriginalUrl.where("clicks >= ?", 1).order(clicks: :desc).limit(7)
     @recent_shotlinks = OriginalUrl.order(created_at: :desc).limit(7)
     @influential_users = User.order(total_clicks: :desc).limit(7)
   end
