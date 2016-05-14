@@ -150,7 +150,6 @@ body {
     top: 0;
   }
   .mastfoot {
-    position: fixed;
     bottom: 0;
   }
   /* Start the vertical centering */
@@ -171,4 +170,8 @@ body {
   .cover-container {
     width: 42rem;
   }
+}
+.masthead-fixed-top {
+  z-index: 2;
+  background: #366D86;
 }

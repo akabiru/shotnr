@@ -7,25 +7,36 @@ $info_button_blue: #5BC0DE;
   background-color: #366D86 !important;
   border-color: #00BCD4  #00BCD4 transparent  #00BCD4 !important;
 }
+.shotlinks-url-view {
+  margin-top: 7rem;
+  margin-bottom: 1rem;
 
-.nav-tabs {
-  border-bottom: 1px solid #00BCD4;
-  .nav-link {
-    color: #fff;
-    &:hover, &:focus {
-      border-color: #00BCD4 transparent transparent transparent;
+  .nav-tabs {
+    border-bottom: 1px solid #00BCD4;
+    .nav-link {
+      color: #fff;
+      &:hover, &:focus {
+        border-color: #00BCD4 transparent transparent transparent;
+      }
     }
-  }
 
-  .nav-link.active {
-    @extend .my_custom_tab_style;
-  }
-
-  .nav-item.open .nav-link {
-    &:hover, &:focus {
+    .nav-link.active {
       @extend .my_custom_tab_style;
     }
+
+    .nav-item.open .nav-link {
+      &:hover, &:focus {
+        @extend .my_custom_tab_style;
+      }
+    }
   }
+}
+
+#short-url-form {
+  position: fixed;
+  width: 360px;
+  right: 9px;
+  top: 10rem;
 }
 
 .list-group-item {

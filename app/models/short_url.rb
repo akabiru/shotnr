@@ -1,4 +1,6 @@
 class ShortUrl < ActiveRecord::Base
+  attr_accessor :long_url
+
   belongs_to :original_url
   belongs_to :user
 

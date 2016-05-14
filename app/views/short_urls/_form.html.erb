@@ -1,0 +1,17 @@
+<%= form_for(@short_url, remote: true) do |f| %>
+  <%= token_tag(nil) %>
+  <fieldset id="short-url-form-group" class="form-group">
+    <%= f.text_field :long_url, class: 'form-control form-control-sm landing-text-field',
+          placeholder: 'url e.g. shotnr.com', required: true %>
+    <label id="short-url-string-status" class="form-control-label"></label>
+  </fieldset>
+  <fieldset id="vanity-string-form-group" class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon3">shotnr.com/</span>
+      <%= f.text_field :vanity_string, class: 'form-control form-control-sm',
+        placeholder: 'optional custom url e.g. andela', id: 'vanity_string' %>
+    </div>
+    <label id="vanity-string-status" for="vanityStringStatus" class="form-control-label"></label>
+  </fieldset>
+  <%= f.submit "Update", class: 'btn btn-success btn-sm' %>
+<% end %>

@@ -1,0 +1,21 @@
+<% if @influential_users.nil? %>
+   <div class="text-center">
+      <span><i class="fa fa-meh-o fa-lg" aria-hidden="true"></i></span>
+      <p>No influential users</p>
+      <p>Log in to be come one</p>
+  </div>
+<% else %>
+  <% @influential_users.each do |user| %>
+    <li class="list-group-item">
+      <%= image_tag user.image_url, class: 'profile-picture' %>
+      <span class="user-name"><%= user.name %></span>
+      <span class="label label-success label-pill">Total clicks: <%= user.total_clicks %></span><br>
+      <% if user.trending_shotlink[:clicks] > 0 %>
+        <span>Top Url: </span>
+        <%= link_to full_short_url(user.trending_shotlink[:original_url]),
+        full_short_url(user.trending_shotlink[:original_url]) %><br>
+        <span><small><%= user.trending_shotlink[:original_url].long_url %></small></span>
+      <% end %>
+    </li>
+  <% end %>
+<% end %>
