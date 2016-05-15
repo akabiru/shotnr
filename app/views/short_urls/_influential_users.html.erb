@@ -13,7 +13,7 @@
       <% if user.trending_shotlink[:clicks] > 0 %>
         <span>Top Url: </span>
         <%= link_to full_short_url(user.trending_shotlink[:original_url]),
-        full_short_url(user.trending_shotlink[:original_url]) %><br>
+        full_short_url(user.trending_shotlink[:original_url]), target: '_blank' %><br>
         <span><small><%= user.trending_shotlink[:original_url].long_url %></small></span>
       <% end %>
     </li>

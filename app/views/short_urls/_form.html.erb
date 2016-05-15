@@ -6,6 +6,12 @@
             placeholder: 'url e.g. shotnr.com', required: true %>
       <label id="short-url-string-status" class="form-control-label"></label>
     </fieldset>
+    <fieldset class="checkbox">
+      <label for="checkbox">
+        <%= original_url.check_box :active %>
+        Active
+      </label>
+    </fieldset>
   <% end %>
   <fieldset id="vanity-string-form-group" class="form-group">
     <div class="input-group">

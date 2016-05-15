@@ -15,7 +15,8 @@ class ShortUrlsController < ApplicationController
 
   def update
     @short_url.original_url.update_attributes(
-      long_url: short_url_params[:original_url_attributes][:long_url]
+      long_url: short_url_params[:original_url_attributes][:long_url],
+      active: short_url_params[:original_url_attributes][:active]
     )
     @short_url.update_attributes(
       vanity_string: short_url_params[:vanity_string]
@@ -48,7 +49,7 @@ class ShortUrlsController < ApplicationController
 
   def short_url_params
     params.require(:short_url).permit(:vanity_string, :long_url,
-      original_url_attributes: [:long_url, :id]
+      original_url_attributes: [:long_url, :id, :active]
     )
   end
 end

@@ -10,7 +10,7 @@ $(document).on("page:change", function() {
     $('#'+ validationType +'-string-status').text('').text(message)
   }
 
-  $('input#vanity_string').keyup(function(e) {
+  $('#vanity_string').keyup(function(e) {
     if (this.value) {
       if (this.value.length < 5) {
         validateVanityString('vanity', 'Your custom url is too short.', 'success', 'danger')

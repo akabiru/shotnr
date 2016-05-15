@@ -9,10 +9,15 @@
         <i class="fa fa-trash-o" aria-hidden="true"></i>
       <% end %>
     </span>
-    <%= link_to full_short_url(s), full_short_url(s) %>
-    <span class="label label-success label-pill">
+    <%= link_to full_short_url(s), full_short_url(s), target: '_blank' %>
+    <span class="label label-success-outline label-pill">
       <%= pluralize(s.original_url.clicks, 'click') %>
-    </span> <br>
+    </span>
+      <% if s.original_url.active? %>
+      <span class="text-success"><i class="fa fa-check-circle-o" aria-hidden="true"></i> active</span>
+    <% else %>
+      <span class="text-danger"><i class="fa fa-times-circle" aria-hidden="true"></i> inactive</span>
+    <% end %> <br>
     <small class="text-muted"><%= s.original_url.long_url %></small>
   </li>
 <% end %>

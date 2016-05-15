@@ -37,6 +37,10 @@ $info_button_blue: #5BC0DE;
   width: 360px;
   right: 9px;
   top: 10rem;
+  text-align: left;
+  .form-group {
+    margin-bottom: 0rem;
+  }
 }
 
 .list-group-item {
@@ -64,4 +68,10 @@ $info_button_blue: #5BC0DE;
   .user-name {
     padding: 0rem 1rem;
   }
+}
+
+.label-success-outline {
+  background-color: $backgroud_color;
+  border: 1px solid #5CB85C;
+  // color: #5CB85C;
 }

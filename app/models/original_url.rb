@@ -8,6 +8,14 @@ class OriginalUrl < ActiveRecord::Base
     save
   end
 
+  def active?
+    self.active
+  end
+
+  def inactive?
+    !self.active
+  end
+
   def self.find_long_url(vanity_string)
     short_url_record = ShortUrl.find_by(vanity_string: vanity_string)
     if short_url_record

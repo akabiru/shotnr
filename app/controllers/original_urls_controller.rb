@@ -33,13 +33,23 @@ class OriginalUrlsController < ApplicationController
 
   def redirect_to_original_url
     original_url = OriginalUrl.find_long_url(params[:vanity_string])
-    if original_url
+    if original_url && original_url.active?
       redirect_to original_url.long_url
       original_url.increment_clicks
       unless original_url.short_url.user.nil?
         original_url.short_url.user.increment_total_clicks
       end
+    elsif original_url && original_url.inactive?
+      render :inactive_page
+    else
+      render :deleted_page
     end
+  end
+
+  def inactive_page
+  end
+
+  def deleted_page
   end
 
   private
