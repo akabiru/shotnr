@@ -1,11 +1,11 @@
 <% @my_shotlinks.each do |s| %>
-  <li class="list-group-item">
+  <li id="short_url_<%= s.id%>" class="list-group-item">
     <span class="pull-xs-right">
       <%= link_to edit_short_url_path(s), remote: true do %>
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
       <% end %>
       <br>
-      <%= link_to "#", remote: true do %>
+      <%= link_to short_url_path(s), method: :delete, remote: true do %>
         <i class="fa fa-trash-o" aria-hidden="true"></i>
       <% end %>
     </span>

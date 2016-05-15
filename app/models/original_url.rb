@@ -1,6 +1,6 @@
 class OriginalUrl < ActiveRecord::Base
   attr_accessor :vanity_string
-  has_one :short_url
+  has_one :short_url, dependent: :destroy
   validates_presence_of :long_url
 
   def increment_clicks

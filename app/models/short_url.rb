@@ -1,11 +1,11 @@
 class ShortUrl < ActiveRecord::Base
-  attr_accessor :long_url
-
-  belongs_to :original_url
+  belongs_to :original_url, dependent: :destroy
   belongs_to :user
 
   validates_presence_of :original_url_id
   validates :vanity_string, presence: true
+
+  accepts_nested_attributes_for :original_url
 
   ALPHABETS = "x6QW9Js5T7MHCyVj0uRIkrYaLFlSh4b3fpZANz1o8wqKtX2d"\
   "OBnvGUcgiEDmeP-_".split(//)

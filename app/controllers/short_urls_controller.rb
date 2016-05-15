@@ -1,20 +1,31 @@
 class ShortUrlsController < ApplicationController
-  before_action :set_short_url, only: [:edit, :update]
+  before_action :set_short_url, only: [:edit, :update, :destroy]
+  before_action :set_my_shotlinks, only: [:update, :destroy]
 
   def index
     @popular_shotlinks =
-      OriginalUrl.where("clicks >= ?", 1).order(clicks: :desc).limit(7)
-    @recent_shotlinks = OriginalUrl.order(created_at: :desc).limit(7)
-    @influential_users = User.order(total_clicks: :desc).limit(7)
-    @my_shotlinks = current_user.short_urls if logged_in?
+      OriginalUrl.where("clicks >= ?", 1).order(clicks: :desc)
+    @recent_shotlinks = OriginalUrl.order(created_at: :desc)
+    @influential_users = User.order(total_clicks: :desc)
+    if logged_in?
+      @my_shotlinks =
+        ShortUrl.where(user_id: current_user.id).order(created_at: :desc)
+    end
   end
 
   def update
-    @short_url.original_url.update_attributes(short_url_params[:long_url])
-    @short_url.update_attributes(short_url_params[:vanity_string])
-    respond_to do |format|
-      format.js {}
-    end
+    @short_url.original_url.update_attributes(
+      long_url: short_url_params[:original_url_attributes][:long_url]
+    )
+    @short_url.update_attributes(
+      vanity_string: short_url_params[:vanity_string]
+    )
+    respond_to :js
+  end
+
+  def destroy
+    @short_url.destroy
+    respond_to :js
   end
 
   def check_vanity_string
@@ -24,6 +35,11 @@ class ShortUrlsController < ApplicationController
     end
   end
 
+  def set_my_shotlinks
+    @my_shotlinks =
+        ShortUrl.where(user_id: current_user.id).order(created_at: :desc)
+  end
+
   private
 
   def set_short_url
@@ -31,6 +47,8 @@ class ShortUrlsController < ApplicationController
   end
 
   def short_url_params
-    params.require(:short_url).permit(:vanity_string, :long_url)
+    params.require(:short_url).permit(:vanity_string, :long_url,
+      original_url_attributes: [:long_url, :id]
+    )
   end
 end
