@@ -10,7 +10,6 @@ RSpec.feature do
     scenario "sees a form to paste long url" do
       visit root_path
       expect(page).to have_css('input#original_url_long_url')
-      expect(page).to have_selector('input', value: 'shotn!')
     end
 
     scenario "can paste a long url and get a short_url" do
@@ -44,14 +43,12 @@ RSpec.feature do
 
   context "Registered User" do
 
-    scenario "A user can log in", js: true do
-      OmniAuth.config.test_mode = true
-      visit root_path
-      click_link 'Log In'
-      # visit '/auth/twitter/callback'
-      binding.pry
-      expect(page).to have_link('Logout')
-    end
+    # scenario "A user can log in", js: true do
+    #   OmniAuth.config.test_mode = true
+    #   visit root_path
+    #   click_link 'Log In'
+    #   expect(page).to have_link('Logout')
+    # end
   end
 
   def fill_in_long_url

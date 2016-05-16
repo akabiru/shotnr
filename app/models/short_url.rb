@@ -3,7 +3,7 @@ class ShortUrl < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :original_url_id
-  validates :vanity_string, presence: true
+  validates_presence_of :vanity_string
 
   accepts_nested_attributes_for :original_url
 
