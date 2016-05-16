@@ -30,7 +30,7 @@ end
 group :test do
   gem "factory_girl_rails"
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'simplecov', :require => false
+  gem 'coveralls', require: false
 end
 
 group :production do

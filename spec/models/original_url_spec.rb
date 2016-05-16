@@ -30,6 +30,14 @@ RSpec.describe OriginalUrl, type: :model do
     end
   end
 
+  describe '#this_one?' do
+    it 'return boolean state of whether long url is ours' do
+      expect(@original_url.this_one?).to be false
+      @original_url.long_url = 'http://shotnr.com'
+      expect(@original_url.this_one?).to be true
+    end
+  end
+
   describe ".find_long_url" do
     it "given vanity string returns original_url otherwise false" do
       user = create(:user_with_short_urls)
