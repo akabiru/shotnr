@@ -3,12 +3,12 @@ require "rails_helper"
 RSpec.feature do
   context "Anonymous user" do
     scenario "sees a welcome message" do
-      visit root_path
+      visit "/"
       expect(page).to have_selector("h3", "Welcome to Url  Shotnr!")
     end
 
     scenario "sees a form to paste long url" do
-      visit root_path
+      visit "/"
       expect(page).to have_css('input#original_url_long_url')
     end
 
@@ -18,12 +18,12 @@ RSpec.feature do
     end
 
     scenario "can see a link to shotlinks" do
-      visit root_path
+      visit "/"
       expect(page).to have_selector("a", "Shotlinks")
     end
 
     scenario "redirected to shotlinks page on clicking 'shotlinks'" do
-      visit root_path
+      visit "/"
       click_link "Shotlinks"
       expect(
         page
@@ -38,7 +38,7 @@ RSpec.feature do
     end
 
     scenario "can see link to log in" do
-      visit root_path
+      visit "/"
       expect(page).to have_selector("span", "Log In")
     end
   end
