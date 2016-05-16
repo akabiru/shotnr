@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/andela-akabiru/travis-broken-example.svg?branch=master)](https://travis-ci.org/andela-akabiru/travis-broken-example)
-
-[![Coverage Status](https://coveralls.io/repos/github/andela-akabiru/shotnr/badge.svg?branch=master)](https://coveralls.io/github/andela-akabiru/shotnr?branch=master)
+[![Build Status](https://travis-ci.org/andela-akabiru/shotnr.svg?branch=master)](https://travis-ci.org/andela-akabiru/shotnr) [![Coverage Status](https://coveralls.io/repos/github/andela-akabiru/shotnr/badge.svg?branch=master)](https://coveralls.io/github/andela-akabiru/shotnr?branch=master)
 
 # Shotnr
 
