@@ -16,6 +16,15 @@ class OriginalUrl < ActiveRecord::Base
     !active
   end
 
+  def this_one?
+    [
+      'https://www.shotnr.com',
+      'http://shotnr.com',
+      'https:shotnr.herokuapp.com',
+      'https:shotnr-staging.herokuapp.com'
+    ].include? long_url
+  end
+
   def self.find_long_url(vanity_string)
     short_url_record = ShortUrl.find_by(vanity_string: vanity_string)
     if short_url_record
