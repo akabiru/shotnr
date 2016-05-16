@@ -5,8 +5,8 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:original_urls).through(:short_urls) }
 
   describe '#increment_total_clicks' do
-    it 'increments total clicks' do
-      user = build(:user, uid: 45679)
+    it "increments total clicks" do
+      user = build(:user, uid: 45_679)
       expect(user.total_clicks).to eq 0
       user.increment_total_clicks
       expect(user.total_clicks).to eq 1
@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
   end
 
   describe '#trending_shotlink' do
-    it 'gets the trending shotlink' do
+    it "gets the trending shotlink" do
       user = create(:user_with_short_urls)
       expect(user.trending_shotlink[:clicks]).to eq 0
       user.short_urls.first.original_url.increment_clicks
@@ -23,19 +23,18 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '.from_omni_auth' do
-    context 'existing user' do
-      it 'should find the user' do
-        user = create(:user)
+  describe ".from_omni_auth" do
+    context "existing user" do
+      it "should find the user" do
+        create(:user)
         expect do
           User.from_omni_auth(valid_attributes_omniauth)
         end.to change(User, :count).by(0)
       end
     end
 
-    context 'new user' do
-      it 'should create the user' do
-        user = build(:user)
+    context "new user" do
+      it "should create the user" do
         expect do
           User.from_omni_auth(valid_attributes_omniauth)
         end.to change(User, :count).by(1)
