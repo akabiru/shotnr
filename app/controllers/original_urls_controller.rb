@@ -36,7 +36,7 @@ class OriginalUrlsController < ApplicationController
     if original_url && original_url.this_one?
       render :index
     elsif original_url && original_url.active?
-      redirect_to original_url.long_url
+      redirect_to original_url.long_url, status: 302
       original_url.increment_clicks
       unless original_url.short_url.user.nil?
         original_url.short_url.user.increment_total_clicks
