@@ -10,7 +10,7 @@
       <%= image_tag user.image_url, class: 'profile-picture' %>
       <span class="user-name"><%= user.name %></span>
       <span class="label label-success label-pill">Total clicks: <%= user.total_clicks %></span><br>
-      <% if user.trending_shotlink[:clicks] > 0 %>
+      <% if user.trending_shotlink[:original_url].present? && user.trending_shotlink[:clicks] > 0 %>
         <span>Top Url: </span>
         <%= link_to full_short_url(user.trending_shotlink[:original_url].short_url),
         full_short_url(user.trending_shotlink[:original_url].short_url), target: '_blank' %><br>

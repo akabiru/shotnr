@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
 
   def trending_shotlink
     max_shotlink = { clicks: 0 }
-    max_shotlink[:original_url] = short_urls.first.original_url
     short_urls.each do |s|
       if s.original_url.clicks > max_shotlink[:clicks]
         max_shotlink[:clicks] = s.original_url.clicks
