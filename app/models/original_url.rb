@@ -9,11 +9,11 @@ class OriginalUrl < ActiveRecord::Base
   end
 
   def active?
-    self.active
+    active
   end
 
   def inactive?
-    !self.active
+    !active
   end
 
   def self.find_long_url(vanity_string)

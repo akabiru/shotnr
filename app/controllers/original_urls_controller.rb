@@ -3,12 +3,12 @@ class OriginalUrlsController < ApplicationController
     @original_urls = OriginalUrl.all
     respond_to do |format|
       format.html { render :index }
-      format.json { render json:@original_urls.as_json }
+      format.json { render json: @original_urls.as_json }
     end
   end
 
   def create
-    @original_url  = OriginalUrl.new(long_url: url_params[:long_url])
+    @original_url = OriginalUrl.new(long_url: url_params[:long_url])
     if @original_url.save
       short_url = @original_url.build_short_url
       if logged_in?
@@ -26,7 +26,7 @@ class OriginalUrlsController < ApplicationController
         format.js {}
       end
     else
-      flash[:danger] = 'Error, shotlink could not be saved.'
+      flash[:danger] = "Error, shotlink could not be saved."
       render :index
     end
   end

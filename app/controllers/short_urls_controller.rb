@@ -38,7 +38,7 @@ class ShortUrlsController < ApplicationController
 
   def set_my_shotlinks
     @my_shotlinks =
-        ShortUrl.where(user_id: current_user.id).order(created_at: :desc)
+      ShortUrl.where(user_id: current_user.id).order(created_at: :desc)
   end
 
   private
@@ -49,7 +49,6 @@ class ShortUrlsController < ApplicationController
 
   def short_url_params
     params.require(:short_url).permit(:vanity_string, :long_url,
-      original_url_attributes: [:long_url, :id, :active]
-    )
+                                      original_url_attributes: [:long_url, :id, :active])
   end
 end

@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :short_urls
-
+  has_many :original_urls, through: :short_urls
   def increment_total_clicks
     self.total_clicks += 1
     save
@@ -21,11 +21,12 @@ class User < ActiveRecord::Base
     user = find_or_create_by(
       uid: auth_hash["uid"],
       provider: auth_hash["provider"]
-    )
-    user.name = auth_hash["info"]["name"]
-    user.image_url = auth_hash["info"]["image"]
-    user.url = auth_hash["info"]["urls"]["Twitter"]
-    user.save!
+    ) do |user|
+      user.name = auth_hash["info"]["name"]
+      user.image_url = auth_hash["info"]["image"]
+      user.url = auth_hash["info"]["urls"]["Twitter"]
+      user.save!
+    end
     user
   end
 end
