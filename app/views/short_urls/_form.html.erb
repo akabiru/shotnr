@@ -3,7 +3,7 @@
   <%= f.fields_for :original_url do |original_url| %>
     <fieldset id="short-url-form-group" class="form-group">
       <%= original_url.text_field :long_url, class: 'form-control form-control-sm landing-text-field',
-            placeholder: 'url e.g. shotnr.com', required: true %>
+            placeholder: 'url e.g. http://shotnr.com', type: 'url', required: true %>
       <label id="short-url-string-status" class="form-control-label"></label>
     </fieldset>
     <fieldset class="checkbox">
