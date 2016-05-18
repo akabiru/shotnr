@@ -1,27 +1,7 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  it { is_expected.to have_many(:short_urls) }
-  it { is_expected.to have_many(:original_urls).through(:short_urls) }
-
-  describe '#increment_total_clicks' do
-    it "increments total clicks" do
-      user = build(:user, uid: 45_679)
-      expect(user.total_clicks).to eq 0
-      user.increment_total_clicks
-      expect(user.total_clicks).to eq 1
-      expect(user.new_record?).to be false
-    end
-  end
-
-  describe '#trending_shotlink' do
-    it "gets the trending shotlink" do
-      user = create(:user_with_short_urls)
-      expect(user.trending_shotlink[:clicks]).to eq 0
-      user.short_urls.first.original_url.increment_clicks
-      expect(user.trending_shotlink[:clicks]).to eq 1
-    end
-  end
+  it { is_expected.to have_many(:links) }
 
   describe ".from_omni_auth" do
     context "existing user" do

@@ -1,4 +1,6 @@
 class Link < ActiveRecord::Base
+  belongs_to :user
+
   validates_presence_of :actual
   validates :vanity_string, uniqueness: true
   after_create :generate_vanity_string
