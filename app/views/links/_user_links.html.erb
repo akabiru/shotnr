@@ -1,23 +1,23 @@
-<% @my_shotlinks.each do |s| %>
-  <li id="short_url_<%= s.id%>" class="list-group-item">
+<% @user_links.each do |link| %>
+  <li id="link_<%= link.id%>" class="list-group-item">
     <span class="pull-xs-right">
-      <%= link_to edit_short_url_path(s), remote: true do %>
+      <%= link_to edit_link_path(link), remote: true do %>
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
       <% end %>
       <br>
-      <%= link_to short_url_path(s), method: :delete, remote: true do %>
+      <%= link_to link_path(link), method: :delete, remote: true do %>
         <i class="fa fa-trash-o" aria-hidden="true"></i>
       <% end %>
     </span>
-    <%= link_to full_short_url(s), full_short_url(s), target: '_blank' %>
+    <%= link_to shotlink(link), shotlink(link), target: '_blank' %>
     <span class="label label-success-outline label-pill">
-      <%= pluralize(s.original_url.clicks, 'click') %>
+      <%= pluralize(link.clicks, 'click') %>
     </span>
-      <% if s.original_url.active? %>
+      <% if link.active? %>
       <span class="text-success"><i class="fa fa-check-circle-o" aria-hidden="true"></i> active</span>
     <% else %>
       <span class="text-danger"><i class="fa fa-times-circle" aria-hidden="true"></i> inactive</span>
     <% end %> <br>
-    <small class="text-muted"><%= s.original_url.long_url %></small>
+    <small class="text-muted"><%= link.actual %></small>
   </li>
 <% end %>

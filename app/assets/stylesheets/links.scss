@@ -21,7 +21,7 @@ body {
 .site-wrapper {
   display: table;
   width: 100%;
-  height: 100%; /* For at least Firefox */
+  height: 100%;
   min-height: 100%;
 }
 .site-wrapper-inner {
@@ -91,11 +91,6 @@ body {
   }
 }
 
-
-/*
- * Cover
- */
-
 .cover {
   padding: 0 1.5rem;
 }
@@ -115,11 +110,11 @@ body {
   color: #fff;
 }
 
-#url-view {
+#shotlink-view {
   border: 1px solid #5BC0DE;
   border-radius: 5px;
 
-  .original_url {
+  .link {
     padding: 1rem;
     text-align: left;
 

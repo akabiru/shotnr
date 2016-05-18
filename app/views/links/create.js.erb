@@ -1,0 +1,9 @@
+<% if @link.new_record? %>
+  $('#actual-link-status').text("Sorry, We couldn't shotn your url. Please try again.").slideDown(350);
+<% else %>
+  $('#actual-link-status').text("");
+  $('input#link_actual').val('')
+  $('input#link_vanity_string').val('').removeClass('form-control-success')
+  $('#vanity-string-form-group').removeClass('has-success')
+  $('div#shotlink-view').html("<%=j ( render @link ) %>").slideDown(350)
+<% end %>

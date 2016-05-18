@@ -2,7 +2,7 @@
   <div class="inner">
     <h3 class="masthead-brand"><a href="/">Shotnr</a></h3>
     <nav class="nav nav-masthead">
-      <%= link_to 'Shotlinks', short_urls_path, class: 'nav-link' %>
+      <%= link_to 'Shotlinks', links_path, class: 'nav-link' %>
       <% if logged_in? %>
         <%= link_to logout_path, class: 'nav-link' do %>
           <span><i class="fa fa-sign-out" aria-hidden-"true"></i> Logout</span>

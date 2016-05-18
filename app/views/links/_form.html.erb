@@ -1,11 +1,11 @@
-<%= form_for(OriginalUrl.new, remote: true) do |f| %>
+<%= form_for(@link, remote: true) do |f| %>
   <%= token_tag(nil) %>
   <% if logged_in? %>
-  <div id="original-url-form-group" class="form-group row">
+  <div id="actual-link-form-group" class="form-group row">
     <div class="col-sm-12">
-      <%= f.text_field :long_url, class: 'form-control landing-text-field',
-          placeholder: 'url e.g. http://shotnr.com', type: 'url', required: true %>
-      <label id="original-url-string-status" class="form-control-label"></label>
+      <%= f.text_field :actual, class: 'form-control landing-text-field',
+          placeholder: 'http://shotnr.com', type: 'url', required: true %>
+      <label id="actual-link-status" class="form-control-label"></label>
     </div>
   </div>
   <div id="vanity-string-form-group" class="form-group row">
@@ -13,7 +13,7 @@
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon3">shotnr.com/</span>
         <%= f.text_field :vanity_string, class: 'form-control',
-          placeholder: 'optional custom url e.g. andela', id: 'vanity_string' %>
+          placeholder: 'custom url', id: 'vanity-string' %>
       </div>
     </div>
     <div class="col-sm-2">
@@ -24,13 +24,13 @@
   <% else %>
     <div class="form-group">
       <div class="input-group">
-        <%= f.text_field :long_url, class: 'form-control landing-text-field',
-          placeholder: 'url e.g. http://shotnr.com', type: 'url', required: true %>
+        <%= f.text_field :actual, class: 'form-control landing-text-field',
+          placeholder: 'http://shotnr.com', type: 'url', required: true %>
         <span class="input-group-btn">
           <%= f.submit "shotn!", class: 'btn btn-success' %>
         </span>
       </div>
-      <label id="original-url-string-status" class="form-control-label"></label>
+      <label id="actual-link-status" class="form-control-label text-danger" style="display:none;"></label>
     </div>
   <% end %>
 <% end %>
