@@ -45,4 +45,17 @@ RSpec.describe User, type: :model do
       }
     end
   end
+
+  describe ".top_users" do
+    it "should return top users ordered by total_clicks" do
+      user_1 = create(:user, uid: 123)
+      user_2 = create(:user, uid: 234)
+      create(:link, vanity_string: "q", clicks: 2, user: user_1)
+      create(:link, vanity_string: "e", clicks: 4, user: user_1)
+      create(:link, vanity_string: "r", clicks: 1, user: user_2)
+      create(:link, vanity_string: "t", clicks: 3, user: user_2)
+      expect(User.top_users.first["name"]).to eq(user_1.name)
+      expect(User.top_users[1]["name"]).to eq(user_2.name)
+    end
+  end
 end

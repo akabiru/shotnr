@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :login_required, only: [:destroy]
   def create
     begin
       user = User.from_omni_auth(request.env["omniauth.auth"])

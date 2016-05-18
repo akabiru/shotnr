@@ -30,9 +30,9 @@ RSpec.describe Link, type: :model do
   end
 
   describe '#ours?' do
-    it 'return boolean state of whether actual link is ours' do
+    it "return boolean state of whether actual link is ours" do
       expect(@link.ours?).to be false
-      @link.actual = 'http://shotnr.com'
+      @link.actual = "http://shotnr.com"
       expect(@link.ours?).to be true
     end
   end

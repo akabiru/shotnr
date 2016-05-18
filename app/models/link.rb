@@ -23,10 +23,10 @@ class Link < ActiveRecord::Base
 
   def ours?
     [
-      'http://www.shotnr.com',
-      'http://shotnr.com',
-      'https://shotnr.herokuapp.com',
-      'https://shotnr-staging.herokuapp.com'
+      "http://www.shotnr.com",
+      "http://shotnr.com",
+      "https://shotnr.herokuapp.com",
+      "https://shotnr-staging.herokuapp.com"
     ].include? actual
   end
 
