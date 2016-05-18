@@ -1,0 +1,15 @@
+<% if @top_users.blank? %>
+   <div class="text-center">
+      <span><i class="fa fa-meh-o fa-lg" aria-hidden="true"></i></span>
+      <p>No top users</p>
+      <p>Log in to be come one</p>
+  </div>
+<% else %>
+  <% @top_users.each do |user| %>
+    <li class="list-group-item">
+      <%= image_tag user["image_url"], class: 'profile-picture' %>
+      <span class="user-name"><%= user["name"] %></span>
+      <span class="label label-success label-pill">Total clicks: <%= user["total_clicks"] %></span><br>
+    </li>
+  <% end %>
+<% end %>

@@ -1,0 +1,10 @@
+<li class="list-group-item">
+  <span class="label label-success label-pill pull-xs-right"><%= pluralize(link.clicks, 'click') %></span>
+  <%= link_to shotlink(link), shotlink(link), target: '_blank' %>
+  <% if link.active? %>
+    <span class="text-success"><i class="fa fa-check-circle-o" aria-hidden="true"></i> active</span>
+  <% else %>
+    <span class="text-danger"><i class="fa fa-times-circle" aria-hidden="true"></i> inactive</span>
+  <% end %> <br>
+  <small class="text-muted"><%= link.actual %></small>
+</li>

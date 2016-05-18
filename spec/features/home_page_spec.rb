@@ -9,7 +9,7 @@ RSpec.feature do
 
     scenario "sees a form to paste long url" do
       visit "/"
-      expect(page).to have_css('input#original_url_long_url')
+      expect(page).to have_css('input#link_actual')
     end
 
     scenario "can paste a long url and get a short_url" do
@@ -27,13 +27,13 @@ RSpec.feature do
       click_link "Shotlinks"
       expect(
         page
-      ).to have_content("Most Popular Recent Shotlinks Influential Users")
+      ).to have_content("Popular Recent  Top Users")
     end
 
     scenario "can see own short url in 'Recent Shotlinks' tab" do
       fill_in_long_url
       click_link "Shotlinks"
-      click_link "Recent Shotlinks"
+      click_link "Recent"
       expect(page).to have_content("https://www.google.com/")
     end
 
@@ -43,18 +43,9 @@ RSpec.feature do
     end
   end
 
-  context "Registered User" do
-    # scenario "A user can log in", js: true do
-    #   OmniAuth.config.test_mode = true
-    #   visit root_path
-    #   click_link 'Log In'
-    #   expect(page).to have_link('Logout')
-    # end
-  end
-
   def fill_in_long_url
     visit root_path
-    fill_in "original_url_long_url", with: "https://www.google.com/"
+    fill_in "link_actual", with: "https://www.google.com/"
     click_button "shotn!"
   end
 end

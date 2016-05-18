@@ -1,9 +1,9 @@
 class SessionsController < ApplicationController
+  before_action :login_required, only: [:destroy]
   def create
     begin
       user = User.from_omni_auth(request.env["omniauth.auth"])
       log_in(user.id)
-      flash[:success] = "Successfully logged in #{@user.name}"
     rescue
       flash[:danger] = "An error occured while trying to sing you in."
     end

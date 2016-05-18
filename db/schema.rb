@@ -11,17 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160515052400) do
+ActiveRecord::Schema.define(version: 20160517042509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "original_urls", force: :cascade do |t|
-    t.string   "long_url"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "clicks",     default: 0
-    t.boolean  "active",     default: true
+  create_table "links", force: :cascade do |t|
+    t.string   "actual"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "clicks",        default: 0
+    t.boolean  "active",        default: true
+    t.string   "vanity_string"
+    t.integer  "user_id"
   end
 
   create_table "short_urls", force: :cascade do |t|
@@ -39,10 +41,8 @@ ActiveRecord::Schema.define(version: 20160515052400) do
     t.string   "uid"
     t.string   "name"
     t.string   "image_url"
-    t.string   "url"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "total_clicks", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree

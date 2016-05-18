@@ -1,13 +1,13 @@
 <div class="shotlinks-url-view">
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" role="tab" data-toggle="tab" href="#popular">Most Popular</a>
+      <a class="nav-link active" role="tab" data-toggle="tab" href="#popular">Popular</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" role="tab" data-toggle="tab" href="#recent">Recent Shotlinks</a>
+      <a class="nav-link" role="tab" data-toggle="tab" href="#recent">Recent</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" role="tab" data-toggle="tab" href="#influential">Influential Users</a>
+      <a class="nav-link" role="tab" data-toggle="tab" href="#influential">Top Users</a>
     </li>
     <% if logged_in? %>
       <li class="nav-item">
@@ -18,22 +18,22 @@
 
   <div class="tab-content">
     <div role="tabpanel" id="popular" class="tab-pane fade in active">
-      <%= render partial: 'shotlinks_list_view', collection: @popular_shotlinks, as: :s %>
+      <%= render partial: 'links_list_view', collection: @popular, as: :link %>
     </div>
     <div role="tabpanel" id="recent" class="tab-pane fade">
-      <%= render partial: 'shotlinks_list_view', collection: @recent_shotlinks, as: :s %>
+      <%= render partial: 'links_list_view', collection: @recent, as: :link %>
     </div>
     <div role="tabpanel" id="influential" class="tab-pane fade">
-      <%= render partial: 'influential_users' %>
+      <%= render partial: 'top_users' %>
     </div>
     <% if logged_in? %>
       <div role="tabpanel" id="mine" class="tab-pane fade">
-        <%= render partial: 'my_shotlinks' %>
+        <%= render partial: 'user_links' %>
       </div>
     <% end %>
   </div>
 </div>
 <% if logged_in? %>
-  <aside id="short-url-form" style="display: none;">
+  <aside id="link-form" style="display: none;">
   </aside>
 <% end %>
