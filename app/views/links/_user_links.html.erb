@@ -9,7 +9,7 @@
         <i class="fa fa-trash-o" aria-hidden="true"></i>
       <% end %>
     </span>
-    <%= link_to shotlink(link), shotlink(link), target: '_blank' %>
+    <%= link_to shotlink(link), full_shotlink(link), target: '_blank' %>
     <span class="label label-success-outline label-pill">
       <%= pluralize(link.clicks, 'click') %>
     </span>
