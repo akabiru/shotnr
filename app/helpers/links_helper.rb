@@ -1,5 +1,5 @@
 module LinksHelper
   def shotlink(link)
-    "#{root_url}#{link.vanity_string}"
+    "#{root_url.sub(/www./, '')}#{link.vanity_string}"
   end
 end
