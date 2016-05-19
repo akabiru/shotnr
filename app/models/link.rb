@@ -2,7 +2,6 @@ class Link < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :actual
-  validates :vanity_string, uniqueness: true
   after_create :generate_vanity_string
 
   ALPHABETS = "x6QW9Js5T7MHCyVj0uRIkrYaLFlSh4b3fpZANz1o8wqKtX2d"\
