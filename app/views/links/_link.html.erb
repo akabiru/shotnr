@@ -1,4 +1,5 @@
 <%= div_for link do %>
-  <p><%= link.actual %></p>
   <%= link_to shotlink(link), full_shotlink(link), target: '_blank' %>
+  <br>
+  <small class="text-muted"><%= link.actual %></small>
 <% end %>
