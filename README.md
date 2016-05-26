@@ -14,6 +14,16 @@ Alternatively, you can provide a custom string that will be used in the url.
 
 You can access the live version on http://shotnr.com
 
+## Application Features
+
+  1. Shortens a long url to a much shorter one and easier to remember
+  2. Can accept a vanity string to provide a customised url
+  3. User is able to edit the customised url and change the details.
+  4. User can disable and enable shotlinks at will
+  5. Gives statistics on how many times the shotlink has been used
+  6. Shows the top users on the application based on their total clicks
+  7. Shows the recent and popular shotlinks
+
 ## Getting Started
 
   1. `git clone https://github.com/andela-akabiru/shotnr.git`
@@ -42,21 +52,10 @@ These instructions will get you a copy of the project up and running on your loc
   1. [Ruby on Rails](https://github.com/rails/rails)
   2. [Bootstrap 4](https://github.com/twbs/bootstrap/tree/v4-dev)
 
-
-## Application Features
-
-  1. Shortens a long url to a much shorter one and easier to remember
-  2. Can accept a vanity string to provide a customised url
-  3. User is able to edit the customised url and change the details.
-  4. User can disable and enable shotlinks at will
-  5. Gives statistics on how many times the shotlink has been used
-  6. Shows the top users on the application based on their total clicks
-  7. Shows the recent and popular shotlinks
-
 ## Application Limitations
 
   1. The application only accepts a custom string of length > 5 characters
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://opensource.org/licenses/MIT) file for details
