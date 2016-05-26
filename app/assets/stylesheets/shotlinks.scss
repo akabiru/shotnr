@@ -8,9 +8,6 @@ $info_button_blue: #5BC0DE;
   border-color: #00BCD4  #00BCD4 transparent  #00BCD4 !important;
 }
 .shotlinks-url-view {
-  margin-top: 7rem;
-  margin-bottom: 1rem;
-
   .nav-tabs {
     border-bottom: 1px solid #00BCD4;
     .nav-link {
@@ -43,10 +40,53 @@ $info_button_blue: #5BC0DE;
   }
 }
 
+.modal-open {
+  color: black;
+  text-align: left;
+}
+
+@media (max-width: 360px) {
+  .nav-tabs {
+    .nav-link {
+      padding: 0.2rem;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .nav-tabs {
+    .nav-link {
+      padding: 0.5rem;
+    }
+  }
+
+  #actual-link-form-group {
+    margin-bottom: 0rem;
+  }
+  input#submit_link {
+    margin-top: 1rem;
+  }
+
+  #link-form {
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .8);
+    .edit_link {
+      width: 90%;
+      background: #fff;
+      margin: 10% auto;
+      padding: 10px;
+    }
+  }
+}
+
 .list-group-item {
   background-color: $backgroud_color;
   border: 1px solid $border_color;
   text-align: left;
+  word-wrap: break-word;
   a {
     color: #FFB300;
     text-decoration: none;
@@ -73,5 +113,8 @@ $info_button_blue: #5BC0DE;
 .label-success-outline {
   background-color: $backgroud_color;
   border: 1px solid #5CB85C;
-  // color: #5CB85C;
+}
+
+.text-muted {
+  color: #9AB5C2
 }
