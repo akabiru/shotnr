@@ -33,16 +33,17 @@ class LinksController < ApplicationController
   end
 
   def redirect_to_actual_link
-    (link = Link.find_by(vanity_string: params[:vanity_string])) || not_found
-    render(:index) && return if link.ours?
-    if link.active?
+    link = Link.find_by!(vanity_string: params[:vanity_string])
+    if link.ours?
+      render(:index) && return
+    elsif link.active?
       redirect_to link.actual, status: 302
       link.increment_clicks
-    elsif link.inactive?
-      render :inactive_page
     else
-      render :deleted_page
+      redirect_to inactive_page_path
     end
+  rescue ActiveRecord::RecordNotFound
+    redirect_to not_found_path
   end
 
   def check_vanity_string
@@ -52,14 +53,10 @@ class LinksController < ApplicationController
     end
   end
 
-  def not_found
-    raise ActiveRecord::RecordNotFound.new("Not Found")
-  end
-
   def inactive_page
   end
 
-  def deleted_page
+  def not_found
   end
 
   private

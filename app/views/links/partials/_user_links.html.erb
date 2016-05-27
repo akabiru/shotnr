@@ -13,7 +13,7 @@
     <span class="label label-success-outline label-pill">
       <%= pluralize(link.clicks, 'click') %>
     </span>
-      <% if link.active? %>
+    <% if link.active? %>
       <span class="text-success"><i class="fa fa-check-circle-o" aria-hidden="true"></i> active</span>
     <% else %>
       <span class="text-danger"><i class="fa fa-times-circle" aria-hidden="true"></i> inactive</span>

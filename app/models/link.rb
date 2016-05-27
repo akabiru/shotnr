@@ -16,8 +16,8 @@ class Link < ActiveRecord::Base
     active
   end
 
-  def inactive?
-    !active
+  def to_partial_path
+    "links/partials/link"
   end
 
   def ours?

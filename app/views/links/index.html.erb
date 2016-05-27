@@ -20,17 +20,17 @@
 
       <div class="tab-content">
         <div role="tabpanel" id="popular" class="tab-pane fade in active">
-          <%= render partial: 'links_list_view', collection: @popular, as: :link %>
+          <%= render partial: 'links/partials/links_list_view', collection: @popular, as: :link %>
         </div>
         <div role="tabpanel" id="recent" class="tab-pane fade">
-          <%= render partial: 'links_list_view', collection: @recent, as: :link %>
+          <%= render partial: 'links/partials/links_list_view', collection: @recent, as: :link %>
         </div>
         <div role="tabpanel" id="influential" class="tab-pane fade">
-          <%= render partial: 'top_users' %>
+          <%= render partial: 'links/partials/top_users' %>
         </div>
         <% if logged_in? %>
           <div role="tabpanel" id="mine" class="tab-pane fade">
-            <%= render partial: 'user_links' %>
+            <%= render partial: 'links/partials/user_links' %>
           </div>
         <% end %>
       </div>
