@@ -21,14 +21,6 @@ RSpec.describe Link, type: :model do
     end
   end
 
-  describe "#inactive?" do
-    it "return boolean inactive state" do
-      expect(@link.inactive?).to be false
-      @link.update(active: false)
-      expect(@link.inactive?).to be true
-    end
-  end
-
   describe '#ours?' do
     it "return boolean state of whether actual link is ours" do
       expect(@link.ours?).to be false

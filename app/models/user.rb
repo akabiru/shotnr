@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   end
 
   def self.top_users
-    ActiveRecord::Base.connection.execute(
+    connection.execute(
       "SELECT users.name, users.image_url, sum(links.clicks) as total_clicks" \
       " FROM links INNER JOIN users ON links.user_id = users.id" \
       " GROUP BY users.id ORDER BY total_clicks DESC LIMIT 10"

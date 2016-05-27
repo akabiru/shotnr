@@ -1,5 +1,9 @@
 <li class="list-group-item">
-  <span class="label label-success label-pill pull-xs-right"><%= pluralize(link.clicks, 'click') %></span>
+  <span class="pull-xs-right pull-text-right">
+    <small class="text-muted"><%= time_ago_in_words(link.created_at) %> ago</small>
+    <br>
+    <span class="label label-success label-pill"><%= pluralize(link.clicks, 'click') %></span>
+  </span>
   <%= link_to shotlink(link), full_shotlink(link), target: '_blank' %>
   <% if link.active? %>
     <span class="text-success"><i class="fa fa-check-circle-o" aria-hidden="true"></i> active</span>
