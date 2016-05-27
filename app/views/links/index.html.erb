@@ -20,10 +20,10 @@
 
       <div class="tab-content">
         <div role="tabpanel" id="popular" class="tab-pane fade in active">
-          <%= render partial: 'links/partials/links_list_view', collection: @popular, as: :link %>
+          <%= render partial: 'links/partials/links_list_view', collection: @presenter.popular, as: :link %>
         </div>
         <div role="tabpanel" id="recent" class="tab-pane fade">
-          <%= render partial: 'links/partials/links_list_view', collection: @recent, as: :link %>
+          <%= render partial: 'links/partials/links_list_view', collection: @presenter.recent, as: :link %>
         </div>
         <div role="tabpanel" id="influential" class="tab-pane fade">
           <%= render partial: 'links/partials/top_users' %>

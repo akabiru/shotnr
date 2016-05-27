@@ -8,10 +8,7 @@ class LinksController < ApplicationController
 
   def index
     @links = Link.all
-    @popular = Link.where("clicks >= ?", 1).order(clicks: :desc)
-    @recent = Link.order(created_at: :desc)
-    @top_users = User.top_users
-    @user_links = current_user.links.order(created_at: :desc) if logged_in?
+    @presenter = Links::IndexPresenter.new
   end
 
   def create
