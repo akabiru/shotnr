@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'links#new'
   resources :links
 
-  get '/inactive' => 'links#inactive'
+  get '/inactive' => 'links#inactive_page'
   get '/not_found' => 'links#not_found'
   get '/auth/:provider/callback' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
