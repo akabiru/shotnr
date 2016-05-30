@@ -65,6 +65,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.include IntegrationSpecHelper, type: :feature
 end
 Capybara.default_driver = :selenium
 
@@ -76,11 +77,11 @@ Shoulda::Matchers.configure do |config|
 end
 
 OmniAuth.config.test_mode = true
-# OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
-#   provider: "twitter",
-#   uid: "123545",
-#   info: {
-#     name: Faker::Name.first_name,
-#     image: Faker::Avatar.image("my-own-slug", "50x50")
-#   }
-# })
+OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
+  provider: "twitter",
+  uid: "123545",
+  info: {
+    name: Faker::Name.first_name,
+    image: Faker::Avatar.image("my-own-slug", "50x50")
+  }
+})

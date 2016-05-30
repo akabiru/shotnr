@@ -11,9 +11,5 @@ module Links
     def top_users
       User.top_users
     end
-
-    def user_links
-      current_user.links.order(created_at: :desc) if logged_in?
-    end
   end
 end

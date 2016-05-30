@@ -9,6 +9,7 @@ class LinksController < ApplicationController
   def index
     @links = Link.all
     @presenter = Links::IndexPresenter.new
+    @user_links = current_user.links.order(created_at: :desc) if logged_in?
   end
 
   def create
@@ -37,7 +38,7 @@ class LinksController < ApplicationController
       redirect_to link.actual, status: 302
       link.increment_clicks
     else
-      redirect_to inactive_page_path
+      redirect_to inactive_path
     end
   rescue ActiveRecord::RecordNotFound
     redirect_to not_found_path
