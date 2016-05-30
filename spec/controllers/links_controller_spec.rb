@@ -83,4 +83,38 @@ RSpec.describe LinksController, type: :controller do
       end
     end
   end
+
+  describe "GET #redirect_to_actual_link" do
+    it "should redirect_to not_found if record doesn't exist" do
+      expect(
+        get(:redirect_to_actual_link, vanity_string: "nothing")
+      ).to redirect_to(not_found_url)
+    end
+
+    it "should render #index if link is ours" do
+      link = create(:link, actual: "http://shotnr.com", user: nil)
+      expect(
+        get(:redirect_to_actual_link, vanity_string: link.vanity_string)
+      ).to render_template(:index)
+    end
+
+    it "redirects to actual url if link is active" do
+      link = create(:link, user: nil)
+      get :redirect_to_actual_link, vanity_string: link.vanity_string
+      expect(response.status).to eq(302)
+    end
+
+    it "increments clicks of active url" do
+      link = create(:link, user: nil)
+      expect(Link.first.clicks).to eq(0)
+      get :redirect_to_actual_link, vanity_string: link.vanity_string
+      expect(Link.first.clicks).to eq(1)
+    end
+
+    it "redirects to inactive page if link is inactive" do
+      link = create(:link, active: false, user: nil)
+      get :redirect_to_actual_link, vanity_string: link.vanity_string
+      expect(response).to redirect_to(inactive_path)
+    end
+  end
 end

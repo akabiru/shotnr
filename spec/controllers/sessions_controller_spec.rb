@@ -22,6 +22,16 @@ RSpec.describe SessionsController, type: :controller do
       post :create, provider: :twitter
       expect(response).to redirect_to root_url
     end
+
+    context "Auth Failure" do
+      it "gives error message if auth fails" do
+        request.env["omniauth.auth"] = :invalid_credentials
+        post :create, provider: :twitter
+        should set_flash[:danger].to(
+          "An error occured while trying to sing you in."
+        )
+      end
+    end
   end
 
   describe "#destroy" do
