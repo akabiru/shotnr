@@ -5,26 +5,28 @@ RSpec.describe SessionsController, type: :controller do
     request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter]
   end
 
-  describe "#create" do
-    it "should create a user successfully" do
-      expect do
+  describe "POST #create" do
+    context "Auth Success" do
+      it "creates a user" do
+        expect do
+          post :create, provider: :twitter
+        end.to change(User, :count).by(1)
+      end
+
+      it "creates a session" do
+        expect(session[:user_id]).to be_nil
         post :create, provider: :twitter
-      end.to change(User, :count).by(1)
-    end
+        expect(session[:user_id]).not_to be_nil
+      end
 
-    it "should successfully create a session" do
-      expect(session[:user_id]).to be_nil
-      post :create, provider: :twitter
-      expect(session[:user_id]).not_to be_nil
-    end
-
-    it "should redirect the user to the root url" do
-      post :create, provider: :twitter
-      expect(response).to redirect_to root_url
+      it "redirects the user to the root url" do
+        post :create, provider: :twitter
+        expect(response).to redirect_to root_url
+      end
     end
 
     context "Auth Failure" do
-      it "gives error message if auth fails" do
+      it "gives error message" do
         request.env["omniauth.auth"] = :invalid_credentials
         post :create, provider: :twitter
         should set_flash[:danger].to(
@@ -34,18 +36,16 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
-  describe "#destroy" do
-    before do
-      post :create, provider: :twitter
-    end
+  describe "DELETE #destroy" do
+    before { post :create, provider: :twitter }
 
-    it "should clear the session" do
+    it "clears the session" do
       expect(session[:user_id]).not_to be_nil
       delete :destroy
       expect(session[:user_id]).to be_nil
     end
 
-    it "should redirect the user to the home page" do
+    it "redirects the user to the home page" do
       delete :destroy
       expect(response).to redirect_to root_url
     end

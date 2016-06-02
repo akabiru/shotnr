@@ -1,29 +1,22 @@
 require "rails_helper"
 
 RSpec.feature do
-  context "Anonymous user" do
-    scenario "sees a welcome message" do
+  shared_examples "an anonymous user" do
+    scenario "visits home page" do
       visit "/"
       expect(page).to have_selector("h3", "Welcome to Url  Shotnr!")
-    end
-
-    scenario "sees a form to paste long url" do
-      visit "/"
       expect(page).to have_css('input#link_actual')
+      expect(page).to have_selector("a", "Shotlinks")
+      expect(page).to have_selector("span", "Log In")
     end
 
-    scenario "can paste a long url and get a short_url" do
+    scenario "pastes a long url" do
       fill_in_long_url
       click_button "shotn!"
       expect(page).to have_selector("p", "https://www.google.com/")
     end
 
-    scenario "can see a link to shotlinks" do
-      visit "/"
-      expect(page).to have_selector("a", "Shotlinks")
-    end
-
-    scenario "redirected to shotlinks page on clicking 'shotlinks'" do
+    scenario "clicks 'Shotlinks' link" do
       visit "/"
       click_link "Shotlinks"
       expect(
@@ -31,64 +24,57 @@ RSpec.feature do
       ).to have_content("Popular Recent  Top Users")
     end
 
-    scenario "can see own short url in 'Recent Shotlinks' tab" do
+    scenario "clicks 'Recent Shotlinks' tab" do
       fill_in_long_url
       click_button "shotn!"
       click_link "Shotlinks"
       click_link "Recent"
       expect(page).to have_content("https://www.google.com/")
     end
-
-    scenario "can see link to log in" do
-      visit "/"
-      expect(page).to have_selector("span", "Log In")
-    end
   end
 
-  context "Logged in user" do
-    before(:each) do
-      login_with_twitter
-    end
+  context "Anonymous User" do
+    it_behaves_like "an anonymous user"
+  end
 
-    scenario "can log in" do
+  context "Logged in User" do
+    it_behaves_like "an anonymous user"
+
+    before(:each) { login_with_twitter }
+
+    scenario "visits home page" do
       expect(page).to have_css("input#vanity-string")
     end
 
-    scenario "can shorten a long url without vanity string" do
-      fill_in_long_url
-      click_button "shotn!"
-      expect(page).to have_selector("p", "https://www.google.com/")
-    end
-
-    scenario "can shorten a long url with a vanity string" do
+    scenario "creates link with a vanity string" do
       fill_in_long_url
       fill_in "vanity-string", with: "google"
       click_button "shotn!"
       expect(page).to have_selector("a", "#{current_url}google")
     end
 
-    scenario "user is notified on providing a short vanity-string" do
+    scenario "provides a short vanity-string" do
       fill_in_long_url
       fill_in "vanity-string", with: "goo"
       expect(page).to have_content("Your custom url is too short.")
     end
 
-    scenario "redirected to shotlinks page on clicking 'shotlinks'" do
+    scenario "clicks 'Shotlinks' link" do
       visit "/"
       click_link "Shotlinks"
       expect(
         page
-      ).to have_content("Popular Recent  Top Users My Shotlinks")
+      ).to have_content("My Shotlinks")
     end
 
-    scenario "can see a list of own shotlink" do
+    scenario "clicks 'My Shotlinks' tab" do
       create(:link, user: User.first)
       click_link "Shotlinks"
       click_link "My Shotlinks"
       expect(page).to have_selector("a", "#{current_url}facebook")
     end
 
-    scenario "can see form to edit own urls" do
+    scenario "clicks edit icon" do
       create(:link, user: User.first)
       click_link "Shotlinks"
       click_link "My Shotlinks"
@@ -96,7 +82,7 @@ RSpec.feature do
       expect(page).to have_content("Edit Shotlink")
     end
 
-    scenario "can edit own urls" do
+    scenario "updates link" do
       create(:link, user: User.first)
       click_link "Shotlinks"
       click_link "My Shotlinks"
@@ -108,7 +94,7 @@ RSpec.feature do
       expect(Link.first.actual).to eq "https://www.google.com/"
     end
 
-    scenario "can deactivate own urls" do
+    scenario "deactivates link" do
       create(:link, user: User.first)
       click_link "Shotlinks"
       click_link "My Shotlinks"
@@ -118,7 +104,7 @@ RSpec.feature do
       expect(page).to have_content("inactive")
     end
 
-    scenario "can delete own urls" do
+    scenario "deletes link" do
       link = create(:link, user: User.first)
       click_link "Shotlinks"
       click_link "My Shotlinks"

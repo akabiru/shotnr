@@ -34,6 +34,7 @@ class Link < ActiveRecord::Base
     shotlink = ""
     link_id = id
     base = ALPHABETS.size
+
     while link_id > 0
       shotlink << ALPHABETS[link_id.modulo(base)]
       link_id /= base

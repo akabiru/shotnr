@@ -20,6 +20,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'faker'
   gem 'pry-rails'
+  gem 'guard-rspec', require: false
 end
 
 group :development do
