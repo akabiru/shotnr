@@ -3,29 +3,43 @@ require "rails_helper"
 RSpec.describe Link, type: :model do
   it { should validate_presence_of(:actual) }
 
-  before(:each) { @link = build(:link) }
+  let(:link) { build(:link) }
 
   describe "#increment_clicks" do
-    it "is expected to increment clicks" do
-      expect(@link.clicks).to eq 0
-      @link.increment_clicks
-      expect(@link.clicks).to eq 1
+    it "increments clicks" do
+      link_clicks = link.clicks
+      link.increment_clicks
+      expect(link.clicks).to eq(link_clicks + 1)
     end
   end
 
   describe "#active?" do
-    it "returns boolean active state" do
-      expect(@link.active?).to be true
-      @link.update(active: false)
-      expect(@link.active?).to be false
+    context "when a link is created" do
+      it "returns active as true" do
+        expect(link.active).to be true
+      end
+    end
+
+    context "when a link is inactive" do
+      it "returns active as false" do
+        link.update(active: false)
+        expect(link.active).to be false
+      end
     end
   end
 
   describe '#ours?' do
-    it "return boolean state of whether actual link is ours" do
-      expect(@link.ours?).to be false
-      @link.actual = "http://shotnr.com"
-      expect(@link.ours?).to be true
+    context "when the link is ours" do
+      it "returns true" do
+        link.update(actual: "http://shotnr.com")
+        expect(link.ours?).to be true
+      end
+    end
+
+    context "when the link is not ours" do
+      it "returns false" do
+        expect(link.ours?).to be false
+      end
     end
   end
 end
