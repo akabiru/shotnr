@@ -3,6 +3,15 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
+  def log_in(user_id)
+    session[:user_id] = user_id
+  end
+
+  def logout
+    session.clear
+    @current_user = nil
+  end
+
   def login_required
     redirect_to root_path unless logged_in?
   end
