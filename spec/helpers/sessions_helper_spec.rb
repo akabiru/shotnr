@@ -3,26 +3,12 @@ require "rails_helper"
 RSpec.describe SessionsHelper, type: :helper do
   let(:user) { create(:user) }
 
-  before(:each) { log_in(user.id) }
-
-  describe "#login_in" do
-    it "sets the session[:user_id] to current_user.id" do
-      expect(session[:user_id]).to eq(user.id)
-    end
-  end
-
-  describe "#logout" do
-    it "clears the session" do
-      logout
-      expect(session[:user_id]).to be nil
-      expect(assigns(:current_user)).to be nil
-    end
-  end
+  before(:each) { session[:user_id] = user.id }
 
   describe "#current_user" do
     context "when session[:user_id] is nil" do
       it "returns nil" do
-        logout
+        session[:user_id] = nil
         expect(current_user).to be_nil
       end
     end
@@ -36,7 +22,7 @@ RSpec.describe SessionsHelper, type: :helper do
 
   describe "#logged_in?" do
     context "when logged out" do
-      before { logout }
+      before { session[:user_id] = nil }
       it "returns true" do
         expect(logged_in?).to be false
       end
