@@ -14,7 +14,6 @@ RSpec.describe SessionsController, type: :controller do
       end
 
       it "creates a session" do
-        expect(session[:user_id]).to be_nil
         post :create, provider: :twitter
         expect(session[:user_id]).not_to be_nil
       end
@@ -40,7 +39,6 @@ RSpec.describe SessionsController, type: :controller do
     before { post :create, provider: :twitter }
 
     it "clears the session" do
-      expect(session[:user_id]).not_to be_nil
       delete :destroy
       expect(session[:user_id]).to be_nil
     end
