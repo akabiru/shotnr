@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
-  def log_in(user_id)
+  def login(user_id)
     session[:user_id] = user_id
   end
 

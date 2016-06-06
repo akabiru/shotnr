@@ -29,7 +29,7 @@ RSpec.describe SessionsController, type: :controller do
         request.env["omniauth.auth"] = :invalid_credentials
         post :create, provider: :twitter
         should set_flash[:danger].to(
-          "An error occured while trying to sing you in."
+          "An error occured while trying to sign you in."
         )
       end
     end
