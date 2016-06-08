@@ -5,11 +5,7 @@ class SessionsController < ApplicationController
       user = User.from_omni_auth(request.env["omniauth.auth"])
       login(user.id)
     rescue
-      Message.new(
-        flash,
-        "danger",
-        "An error occured while trying to sign you in."
-      ).set_flash
+      Message.new(flash).authentication_error
     end
     redirect_to root_path
   end
