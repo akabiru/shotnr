@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
       user = User.from_omni_auth(request.env["omniauth.auth"])
       login(user.id)
     rescue
-      Message.new(flash).authentication_error
+      flash[:danger] = Message.authentication_error
     end
     redirect_to root_path
   end
