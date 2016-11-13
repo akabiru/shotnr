@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/andela-akabiru/shotnr.svg?branch=master)](https://travis-ci.org/andela-akabiru/shotnr) [![Coverage Status](https://coveralls.io/repos/github/andela-akabiru/shotnr/badge.svg?branch=master)](https://coveralls.io/github/andela-akabiru/shotnr?branch=master) [![Code Climate](https://codeclimate.com/github/andela-akabiru/shotnr/badges/gpa.svg)](https://codeclimate.com/github/andela-akabiru/shotnr)
+[![Build Status](https://travis-ci.org/akabiru/shotnr.svg?branch=master)](https://travis-ci.org/andela-akabiru/shotnr) [![Coverage Status](https://coveralls.io/repos/github/andela-akabiru/shotnr/badge.svg?branch=master)](https://coveralls.io/github/andela-akabiru/shotnr?branch=master) [![Code Climate](https://codeclimate.com/github/andela-akabiru/shotnr/badges/gpa.svg)](https://codeclimate.com/github/andela-akabiru/shotnr)
 
 # Shotnr
 
