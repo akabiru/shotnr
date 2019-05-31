@@ -13,7 +13,7 @@ gem 'pg'
 
 group :development, :test do
   gem 'byebug'
-  gem 'rubocop', '~> 0.40.0', require: false
+  gem 'rubocop', '~> 0.71.0', require: false
   gem 'rspec-rails'
   gem 'capybara'
   gem 'selenium-webdriver'
